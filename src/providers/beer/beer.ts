@@ -34,5 +34,12 @@ export interface Beer {
   degree: string,
   taste: string,
   brewery: string,
-  path: string
+  path: string,
+  nbrVotes: Number,
+  rating: Number,
+  coordinates: [{
+    lat: String,
+    lng: String
+  }]
 }
+

@@ -1,3 +1,5 @@
+import { BeerProvider } from './../../providers/beer/beer';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import {
@@ -11,6 +13,7 @@ import {
   GoogleMapsAnimation,
   MyLocation
 } from '@ionic-native/google-maps';
+import { Beer } from '../../providers/beer/beer';
 
 declare var google: any;
 
@@ -22,14 +25,32 @@ declare var google: any;
 export class MapBeerPage {
   map: GoogleMap;
   mapReady: boolean = false;
+  beers: Beer[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private http: HttpClient, private beerProvider: BeerProvider) {
 
+  }
+
+  getBeers() {
+    return new Promise((resolve, reject) => {
+      this.beers.length = 0;
+      console.log("get beers");
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+      this.beerProvider.getAllBeers(headers).subscribe(res => {
+        console.log(res, "res");
+        res.json().map(item => this.beers.push(item));
+        resolve();
+      }, reject);
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapBeerPage');
-    this.loadMap();
+    this.getBeers().then(res => this.loadMap());
   }
 
   loadMap() {
@@ -50,44 +71,24 @@ export class MapBeerPage {
     // Wait the maps plugin is ready until the MAP_READY event
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       this.mapReady = true;
+      this.setMarkers();
     });
   }
 
-  onButtonClick() {
-    if (!this.mapReady) {
-      console.log("not ready");
-      return;
-    }
-    this.map.clear();
 
-    // Get the location of you
-    this.map.getMyLocation()
-      .then((location: MyLocation) => {
-        console.log(JSON.stringify(location, null, 2));
-
-        // Move the map camera to the location with animation
-        return this.map.animateCamera({
-          target: location.latLng,
-          zoom: 17,
-          tilt: 30
-        }).then(() => {
-          // add a marker
-          return this.map.addMarker({
-            title: '@ionic-native/google-maps plugin!',
-            snippet: 'This plugin is awesome!',
-            position: location.latLng,
-            animation: GoogleMapsAnimation.BOUNCE
-          });
-        })
-      }).then((marker: Marker) => {
-        // show the infoWindow
-        marker.showInfoWindow();
-
-        // If clicked it, display the alert
-        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-          console.log("clicked");
+  setMarkers() {
+    this.beers.forEach(item => {
+      console.log(item.coordinates, "coordonnées");
+      item.coordinates.forEach(coords => {
+        this.map.addMarker({
+          position: {
+            lat: Number(coords.lat),
+            lng: Number(coords.lng)
+          },
+          title: item.name
         });
-      });
+      })
+    })
   }
 
 }

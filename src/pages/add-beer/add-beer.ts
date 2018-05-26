@@ -29,7 +29,13 @@ export class AddBeerPage {
     degree: "",
     taste: "",
     brewery: "",
-    path: ""
+    path: "",
+    nbrVotes: 0,
+    rating: 0,
+    coordinates: [{
+      lat: "",
+      lng: ""
+    }]
   }
 
   constructor(public navCtrl: NavController,
