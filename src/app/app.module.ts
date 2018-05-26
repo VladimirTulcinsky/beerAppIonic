@@ -1,4 +1,3 @@
-
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -18,6 +17,7 @@ export function createTranslateLoader(http: HttpClient) {
 import { HomePage } from '../pages/home/home';
 import { MapBeerPage } from './../pages/map-beer/map-beer';
 import { AddBeerPage } from '../pages/add-beer/add-beer';
+import { DetailsPage } from './../pages/details/details';
 
 //tabs
 import { TabsPage } from '../pages/tabs/tabs';
@@ -26,11 +26,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BeerProvider } from '../providers/beer/beer';
+
+// Import ionic2-rating module
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 
 
@@ -40,13 +44,15 @@ import { BeerProvider } from '../providers/beer/beer';
     HomePage,
     AddBeerPage,
     MapBeerPage,
-    TabsPage
+    TabsPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     HttpModule,
+    Ionic2RatingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,7 +67,8 @@ import { BeerProvider } from '../providers/beer/beer';
     HomePage,
     AddBeerPage,
     MapBeerPage,
-    TabsPage
+    TabsPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
@@ -70,7 +77,8 @@ import { BeerProvider } from '../providers/beer/beer';
     BeerProvider,
     Camera,
     FileTransfer,
-    File
+    File,
+    Geolocation
   ]
 })
 export class AppModule { }

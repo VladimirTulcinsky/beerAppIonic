@@ -28,6 +28,7 @@ export class BeerProvider {
 }
 
 export interface Beer {
+  _id: string,
   name: string,
   color: string,
   degree: string,

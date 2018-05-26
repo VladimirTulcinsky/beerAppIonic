@@ -1,9 +1,3 @@
-<!--
-  Generated template for the DetailsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +8,49 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <img [src]="'https://beeranking.herokuapp.com/' + beer.path">
+    <ion-card-header>
+      {{beer.name}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="home" margin-right></ion-icon> {{beer.color}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="home" margin-right></ion-icon> {{beer.degree}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="home" margin-right></ion-icon> {{beer.taste}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="home" margin-right></ion-icon> {{beer.brewery}}
+        </ion-label>
+      </ion-item>
+
+      <rating [(ngModel)]="rating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+        nullable="false" (ngModelChange)="ratingCompleted($event)">
+      </rating>
+
+      <button ion-button full (tap)="getCurrentLocation()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+
+      <button ion-button full (tap)="confirm()">
+        Confirm
+      </button>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

@@ -91,4 +91,7 @@
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="For scientific purposes tsb" />
+    </plugin>
 </widget>

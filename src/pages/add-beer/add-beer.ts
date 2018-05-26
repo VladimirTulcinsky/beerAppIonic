@@ -23,6 +23,7 @@ export class AddBeerPage {
   pictureExist: boolean = false;
   beerPicture: any = {};
   beer: Beer = {
+    _id: "",
     name: "",
     color: "",
     degree: "",

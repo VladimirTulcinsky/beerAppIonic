@@ -5,7 +5,8 @@ import { NavController } from 'ionic-angular';
 //providers
 import { Beer, BeerProvider } from './../../providers/beer/beer';
 
-
+//pages
+import { DetailsPage } from './../details/details';
 
 @Component({
   selector: 'page-home',
@@ -36,6 +37,10 @@ export class HomePage {
       console.log(res, "res");
       res.json().map(item => this.beers.push(item));
     }, err => console.log(err, "err"));
+  }
+
+  goToDetails(beer: Beer) {
+    this.navCtrl.push(DetailsPage, { beer: beer })
   }
 
 }
