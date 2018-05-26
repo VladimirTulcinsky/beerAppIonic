@@ -1,3 +1,4 @@
+import { AlertToastProvider } from './../../providers/alert-toast/alert-toast';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -31,7 +32,7 @@ export class AddBeerPage {
     brewery: "",
     path: "",
     nbrVotes: 0,
-    rating: 0,
+    rating: [0],
     coordinates: [{
       lat: "",
       lng: ""
@@ -44,7 +45,8 @@ export class AddBeerPage {
     private beerProvider: BeerProvider,
     public http: HttpClient,
     private transfer: FileTransfer,
-    private file: File) {
+    private file: File,
+    private alertToastProvider:AlertToastProvider) {
   }
 
   ionViewDidLoad() {
@@ -85,7 +87,10 @@ export class AddBeerPage {
           newForm.append('path', this.beer.path);
           const imgBlob = new Blob([reader.result], { type: file.type });
           newForm.append("beerPicture", imgBlob, file.name);
-          this.beerProvider.addOneBeer(newForm);
+          this.beerProvider.addOneBeer(newForm)
+            .then(res => {
+              this.alertToastProvider.showAddedBeerToast();
+            })
         }
         reader.readAsArrayBuffer(file);
       }))

@@ -43,4 +43,8 @@ export class HomePage {
     this.navCtrl.push(DetailsPage, { beer: beer })
   }
 
+  deleteAll(){
+    this.beerProvider.deleteAllBeers().subscribe(res => console.log("deleted everything"));
+  }
+
 }

@@ -1,3 +1,4 @@
+import { AlertToastProvider } from './../../providers/alert-toast/alert-toast';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -15,15 +16,30 @@ export class DetailsPage {
     rating: false,
     coords: false
   }
+  average: string;
   rating: Number = 0;
   location: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation, private http: HttpClient) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private geolocation: Geolocation,
+    private http: HttpClient,
+    private alertToastProvider: AlertToastProvider) {
     this.beer = this.navParams.get('beer');
+    this.getAverage();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
+  }
+
+  getAverage() {
+    let sum = 0;
+    this.beer.rating.forEach(rating => {
+      sum += rating;
+    });
+    let average = sum / this.beer.nbrVotes;
+    this.average = average.toFixed(2)
   }
 
   ratingCompleted() {
@@ -64,7 +80,9 @@ export class DetailsPage {
           }
         })
         .toPromise()
-        .then(res => console.log(res, "success"))
+        .then(res => {
+          this.alertToastProvider.showAddedBeerToast();
+        })
         .catch(console.log);
     }
     else {

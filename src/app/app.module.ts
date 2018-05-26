@@ -36,6 +36,7 @@ import { BeerProvider } from '../providers/beer/beer';
 
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { AlertToastProvider } from '../providers/alert-toast/alert-toast';
 
 
 
@@ -80,7 +81,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     FileTransfer,
     File,
     Geolocation,
-    GoogleMaps
+    GoogleMaps,
+    AlertToastProvider
   ]
 })
 export class AppModule { }

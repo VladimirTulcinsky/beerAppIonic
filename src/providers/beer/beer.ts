@@ -25,6 +25,10 @@ export class BeerProvider {
         });
     }).catch(error => { console.log('caught', error.message); });
   }
+
+  deleteAllBeers() {
+    return this.http.delete("https://beeranking.herokuapp.com/beers");
+  }
 }
 
 export interface Beer {
@@ -35,8 +39,8 @@ export interface Beer {
   taste: string,
   brewery: string,
   path: string,
-  nbrVotes: Number,
-  rating: Number,
+  nbrVotes: number,
+  rating: number[],
   coordinates: [{
     lat: String,
     lng: String

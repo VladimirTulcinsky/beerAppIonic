@@ -16,13 +16,13 @@
     <ion-card-content>
       <ion-item>
         <ion-label>
-          <ion-icon name="home" margin-right></ion-icon> {{beer.color}}
+          <ion-icon name="color-palette" margin-right></ion-icon> {{beer.color}}
         </ion-label>
       </ion-item>
 
       <ion-item>
         <ion-label>
-          <ion-icon name="home" margin-right></ion-icon> {{beer.degree}}
+          <ion-icon name="speedometer" margin-right></ion-icon> {{beer.degree}}
         </ion-label>
       </ion-item>
 
@@ -34,7 +34,13 @@
 
       <ion-item>
         <ion-label>
-          <ion-icon name="home" margin-right></ion-icon> {{beer.brewery}}
+          <ion-icon name="globe" margin-right></ion-icon> {{beer.brewery}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="star" margin-right></ion-icon> Average: {{average}}
         </ion-label>
       </ion-item>
 
