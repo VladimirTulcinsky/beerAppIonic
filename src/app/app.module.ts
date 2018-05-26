@@ -27,6 +27,7 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -78,7 +79,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     Camera,
     FileTransfer,
     File,
-    Geolocation
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule { }
