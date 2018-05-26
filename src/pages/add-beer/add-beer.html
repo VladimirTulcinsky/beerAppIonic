@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'ADDBEER' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <img *ngIf="pictureExist" [src]="beerPicture.uri" />
+    <button *ngIf="!pictureExist" full icon-only (tap)="takePicture()">
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+    <ion-card-content>
+      <ion-card-title>
+        {{'ADDBEER' | translate}}
+      </ion-card-title>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="beer"></ion-icon>
+        </ion-label>
+        <ion-input placeholder="{{'NAMEOFBEER' | translate}}" [(ngModel)]="beer.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="color-palette"></ion-icon>
+        </ion-label>
+        <ion-input placeholder="{{'COLOROFBEER' | translate}}" [(ngModel)]="beer.color"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="speedometer"></ion-icon>
+        </ion-label>
+        <ion-input type="number" placeholder="{{'DEGREEOFBEER' | translate}}" [(ngModel)]="beer.degree"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'TASTEOFBEER' | translate}}</ion-label>
+        <ion-select [(ngModel)]="beer.taste">
+          <ion-option value="soft">{{'SOFT' | translate}}</ion-option>
+          <ion-option value="bitter">{{'BITTER' | translate}}</ion-option>
+          <ion-option value="sour">{{'SOUR' | translate}}</ion-option>
+          <ion-option value="syrupy">{{'SYRUPY' | translate}}</ion-option>
+          <ion-option value="preposterous">{{'PREPOSTEROUS' | translate}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="globe"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{'BREWERYOFBEER' | translate}}" [(ngModel)]="beer.brewery"></ion-input>
+      </ion-item>
+      <button ion-button full (tap)="addBeer()">{{'SUBMIT' | translate }}</button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

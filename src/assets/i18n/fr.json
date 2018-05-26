@@ -1,0 +1,16 @@
+{
+  "NAME": "Nom",
+  "ADDBEER": "Ajouter une bière",
+  "NAMEOFBEER": "Nom de la bière",
+  "COLOROFBEER": "Couleur de la bière",
+  "DEGREEOFBEER": "Degrés de la bière",
+  "TASTEOFBEER": "Goût de la bière",
+  "BREWERYOFBEER": "Brasserie de la bière",
+  "COUNTRYOFBEER": "Pays de la bière",
+  "SOFT": "Douce",
+  "BITTER": "Amère",
+  "SOUR": "Acide",
+  "SYRUPY": "Liquoreuse",
+  "PREPOSTEROUS": "Saugrenues",
+  "SUBMIT": "Valider"
+}

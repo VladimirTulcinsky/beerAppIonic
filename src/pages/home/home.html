@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let beer of beers">
+      <ion-avatar item-start>
+        <img [src]="'https://beeranking.herokuapp.com/' + beer.path">
+      </ion-avatar>
+      <h2>{{beer.name}}</h2>
+      <!-- <p>{{beer.name}}</p> -->
+    </ion-item>
+  </ion-list>
+
+</ion-content>
